@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diccionario Mateo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: white;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(10px);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: none;
+      margin-bottom: 20px;
+      font-size: 16px;
+    }
+
+    .palabra {
+      background: rgba(255,255,255,0.05);
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    .titulo {
+      font-weight: bold;
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    .definicion {
+      opacity: 0.9;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📖 Diccionario Mateo</h1>
+
+    <input type="text" id="busqueda" placeholder="Buscar palabra..." onkeyup="buscar()">
+
+    <div id="lista"></div>
+  </div>
+
+  <script>
+    const diccionario = {
+      "Mateo": "Persona increíble, creativa y con ideas épicas.",
+      "Épico": "Algo extremadamente bueno según Mateo.",
+      "Falucho": "Lugar legendario donde pasan cosas importantes.",
+      "Mate": "Bebida sagrada para pensar ideas brillantes.",
+      "Mateoverse": "Universo creado por Mateo lleno de locuras.",
+      "Tandil": "Ciudad hermosa con sierras y aventuras.",
+      "Disney": "Objetivo supremo del ahorro de Mateo."
+    };
+
+    function mostrarLista(filtro = "") {
+      const lista = document.getElementById("lista");
+      lista.innerHTML = "";
+
+      for (let palabra in diccionario) {
+        if (palabra.toLowerCase().includes(filtro.toLowerCase())) {
+          lista.innerHTML += `
+            <div class="palabra">
+              <div class="titulo">${palabra}</div>
+              <div class="definicion">${diccionario[palabra]}</div>
+            </div>
+          `;
+        }
+      }
+    }
+
+    function buscar() {
+      const texto = document.getElementById("busqueda").value;
+      mostrarLista(texto);
+    }
+
+    mostrarLista();
+  </script>
+</body>
+</html>
